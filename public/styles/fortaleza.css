@@ -2,8 +2,16 @@
     border-right: 1px solid #ccc;
 }
 
+.avatar{
+    border-radius: 10%; max-width: 20rem;
+}
+
 @media only screen and (max-width: 1000px) {
     .inicio {
         border-right: none;
     }
+    .avatar{
+        border-radius: 10%; max-width: 10rem;
+    }
 }
+
