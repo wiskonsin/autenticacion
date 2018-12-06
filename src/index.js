@@ -46,7 +46,8 @@ app.use(passport.initialize());
 // inicializamos la sesión
 app.use(passport.session()); // Almacenamos datos en la sesión
 
-
+// en public irán todos los ficheros estáticos de la página
+app.use(express.static('public'));
 
 app.use(express.urlencoded({extended: false})); // Este middleware nos ayudará a debuggear durante el POST
 

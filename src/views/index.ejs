@@ -1,25 +1,35 @@
 <%- layout('layouts/main.ejs') %>
 
 
-<h2 class="mt-4">Bienvenidx a esta aplicación sin sentido
-    <small class="text-muted">(de momento)</small>
-  </h2>
-  <p class="lead">Este texto es de prueba y para ir mostrando cosas.</p>
-
-
-
-<div class="jumbotron">
-    <h1>Hello, world!</h1>
-    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+<div class="jumbotron  mt-4">
+    <h2>¡Bienvenido a Tu Fortaleza!</h2>
+    <p class="lead">Consigue recursos y gestiónalos para mejorar tu ciudad, alimentar a tus vasallos y crear un gran ejército.</p>
     <hr class="my-4">
-    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm inicio">
+    <h3>Comenzar ya</h3>
+    <p>Si aún no tienes una, crea ya tu fortaleza. Te beneficiará ubicarla cerca de donde pases más tiempo, pues la <strong>recolección de recursos será más eficiente</strong>, pronto lo entenderás.</p>
+    <p>Forja<strong> alianzas</strong> con otros reinos y saquea otras ciudades.</p>
+    <p>Invierte en <strong>cultura y tecnología, </strong>tu pueblo te hará más poderoso.</p>
+    <p>Extrae <strong>recursos en el mundo real</strong>. Busca a tu alrededor, el mundo está lleno de sorpresas...</p>
+    <p>Crea tu <strong>ejército</strong> y expándete.</p>
     <p class="lead">
-      <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-    </p>
-    <h3>Example body text</h3>
-    <p>Nullam quis risus eget <a href="#">urna mollis ornare</a> vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
-    <p><small>This line of text is meant to be treated as fine print.</small></p>
-    <p>The following is <strong>rendered as bold text</strong>.</p>
-    <p>The following is <em>rendered as italicized text</em>.</p>
-    <p>An abbreviation of the word attribute is <abbr title="attribute">attr</abbr>.</p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Crear mi Fortaleza</a>
+      </p>
   </div>
+  <div class="col-sm">
+      <h3>Accede a Tu Fortaleza</h3>
+      <p>¿Ya tienes una cuenta?</p>
+      <form action="/signin" method="POST">
+        <div class="form-group">
+                <input type="email" name="email" placeholder="Introduzca email" class="form-control">
+        </div>
+        <div class="form-group">
+                <input type="password" name="password" placeholder="Introduzca contraseña" class="form-control">
+        </div>
+        <button class="btn btn-primary btn-block mt-4" type="submit">Acceder</button>
+    </form>
+    </div>
+</div>
