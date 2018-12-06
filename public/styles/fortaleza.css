@@ -1,6 +1,10 @@
 .inicio{
     border-right: 1px solid #ccc;
 }
+.footerimg{
+    max-width: 400px;
+    padding: 1em;
+}
 
 .avatar{
     border-radius: 10%; max-width: 20rem;
@@ -12,6 +16,17 @@
     }
     .avatar{
         border-radius: 10%; max-width: 10rem;
+    }
+    .footerimg{
+        max-width: 200px;
+        padding: 5px;
+    }
+    .separamovil{
+        border-top: 1px solid #ccc;
+        margin-top: 5px;
+    }
+    .separaheader{
+        margin-top:5px;
     }
 }
 
