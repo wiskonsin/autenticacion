@@ -106,3 +106,19 @@ Vamos a crear un layout para todas nuestras vistas, todo lo que se muestre de fo
 En nuestras plantillas ejs, incluiremos ese layout
 
 En las rutas renderizaremos la plantilla signin.ejs cuando accedamos a signin
+
+Hemos de crear una ruta también para el logout, en el index.js del routes
+
+Para que la autenticación funcione correctamente y bloquee las routes que no queramos, hay que crear un middleware que compruebe la autenticación continuamente. Se crea en el index.js de routes
+Función es isAuthenticated. La incluímos en cada get o bien creamos un middleware en el propio index.js de routes, un req.use justo antes de las rutas que queremos "securizar". Tiene sentido si hay más de una
+
+// ESTILOS //
+
+Simplemente con bootstrap, en main.ejs vamos a añadir el CDN
+
+Ojo con bootswatch, hay themes muy guapos
+
+Para mostrar diferentes menús o lo que sea en función de si estoy logeado o no, voy a index.js
+Teniendo en cuenta que una vez autenticado, passport guarda la autenticacion en req.user, lo guardamos en una variable local accesible desde toda la aplicación
+
+Hecho eso, en la vista main.ejs hago la comparación para que muestre un menú u otro

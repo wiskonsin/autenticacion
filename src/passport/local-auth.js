@@ -7,12 +7,12 @@ const User = require('../models/user.js'); // llamamos a user.js
 // Almacenamiento de sesiones en navegador con passport, con serialize y deserialize
 
 passport.serializeUser((user,done) => {
-    done(null,user.id);
+   return done(null,user.id);
 })
 
 passport.deserializeUser(async (id,done) => {
    const user = await User.findById(id);
-   done(null, user);
+  return done(null, user);
 })
 
 // con estos dos métodos lo que hacemos es pasarnos entre las diferentes páginas del navegador el ID del usuario, y hacer una consulta a base de datos para recibir los datos del usurio continuamente
@@ -31,8 +31,8 @@ passport.use('local-signup', new LocalStrategy(
 
         // Validación usuario
         // Comprobamos si existe el email en la base de datos
-        const user = User.findOne({ email : email});
-        if(!user){
+        const user = await User.findOne({ email : email});
+        if(user){
 
                 // devolvemos null porque no hay error, false porque no devolvemos usuario y un mensaje con connect-flash
                 // hacer require en el index.js de src y usarlo como middleware
@@ -46,7 +46,7 @@ passport.use('local-signup', new LocalStrategy(
                 newUser.email = email;
                 newUser.password = newUser.encryptPassword(password);
                 await newUser.save();
-                done(null,newUser);
+               return done(null,newUser);
 
         }
        
@@ -67,20 +67,27 @@ passport.use('local-signup', new LocalStrategy(
        async(req, email, password, done) => {
     
             // Validación usuario
+            const user = await User.findOne({ email : email});
             // Comprobamos si existe el email en la base de datos
-            if(!User.findOne({ email : email})){
-    
+            if(!user){
+                    console.log("email no registrado");
                     // Comprobamos si el email está registrado
                     return done(null, false, req.flash('signinMessage','El email no está registrado.'));
                     // este mensaje hemos de mostrarlo a través de index.js antes de routes
     
             }
             // Comprobamos el password
-            if(!User.comparePassword(password)){
-                 return done(null, false, req.flash('signinMessage','Password incorrecto.'));
+            if(user.comparePassword(password)){
+                console.log("password ok");
+                return done(null,user); // resultado ok, devuelvo null porque no hay error y el usuario
+
                  // este mensaje hemos de mostrarlo a través de index.js antes de routes   
             }
+            else{
+                console.log("mal password");
+                return done(null, false, req.flash('signinMessage','Password incorrecto.'));
+
+            }
            
-            done(null,User); // resultado ok, devuelvo null porque no hay error y el usuario
            
         }));

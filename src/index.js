@@ -19,7 +19,10 @@ app.set('views', path.join(__dirname,'views')); // defino dónde está la carpet
 app.engine('ejs',engine); // usa el motor de plantillas que acabamos de definir
 app.set('view engine', 'ejs');
 
+
 // MIDDLEWARES (definimos esto antes de Routes)
+
+
 // Son las funciones a ejecutar antes del enrutado
 
 app.use(morgan('dev')); // queremos que ante cada petición del cliente se ejecute morgan y nos muestre los mensajes a nivel "dev". Hay más opciones
@@ -47,9 +50,16 @@ app.use(passport.session()); // Almacenamos datos en la sesión
 
 app.use(express.urlencoded({extended: false})); // Este middleware nos ayudará a debuggear durante el POST
 
+
+// este middleware es propio, dentro ya usamos flash
 app.use(((req,res,next)=>{
   app.locals.signupMessage = req.flash('signupMessage'); // guarda los mensajes, si existen, en la variable local (accesible para toda la aplicación)
-  next(); // pasa al siguiente paso (callback)
+  app.locals.signinMessage = req.flash('signinMessage'); // guarda los mensajes, si existen, en la variable local (accesible para toda la aplicación)
+
+  // Almacenamos la variable user en una variable local accesible desde toda la aplicación
+  app.locals.user = req.user;
+
+  return next(); // pasa al siguiente paso (callback)
   //en la plantilla ejs usaremos una validadción (signup.ejs)
 }));
 
