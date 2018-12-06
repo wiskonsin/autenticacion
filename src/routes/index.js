@@ -12,6 +12,8 @@ router.get('/',(req, res, next) =>{
 
 router.get('/signup',(req, res, next) =>{
     res.render('signup');
+
+
 }); // cuando el usuario ingrese en la carpeta  /signup, manejaremos la petición con un request un response y un next, con el método get
 
 
@@ -29,6 +31,8 @@ router.post('/signup', passport.authenticate('local-signup',{
 router.get('/signin',(req, res, next) =>{
 
     res.render('signin');
+
+
 }); // cuando el usuario ingrese en la carpeta  /signin, manejaremos la petición con un request un response y un next, con el método get
 
 // con la autenticación de passport redireccionamos a profile
@@ -44,6 +48,8 @@ router.post('/signin', passport.authenticate('local-signin',{
 router.get('/logout', (req, res, next) => {
     req.logout();
     res.render('index'); // creamos vista llamada profile
+
+
 });
 
 // pero aún no se está creando la autenticación
@@ -52,14 +58,17 @@ router.get('/logout', (req, res, next) => {
 // Con isAuthenticated en medio protegemos la ruta
 router.get('/profile',isAuthenticated, (req, res, next) => {
     res.render('profile'); // creamos vista llamada profile
+
+
 });
 
 // otra opción es, creando desde aquí un middleware, todas las rutas que estén debajo, tendrán que estar autenticadas, si no, no funcionarán
 
-router.use((req,res,next)=>{
+/*router.use((req,res,next)=>{
     isAuthenticated(req,res,next);
     next();
-});
+    res.end(); // este res.end() se pone para acabar y que no se quede aquí para siempre, si hay debajo cosas, se quita
+});*/
 
 //// a partir de aquí las rutas que quiera proteger (usar si hay más de una)//
 
