@@ -25,6 +25,9 @@ passport.use('local-signup', new LocalStrategy(
     {
         usernameField: 'email',
         passwordField: 'password',
+        nameField:'name',
+        descriptionField:'description',
+        progressField: 'progress',
         passReqToCallback: true // para pasarle todos los datos, no sólo los indicados
     },
    async(req, email, password, done) => {
@@ -45,6 +48,9 @@ passport.use('local-signup', new LocalStrategy(
                 const newUser = new User();
                 newUser.email = email;
                 newUser.password = newUser.encryptPassword(password);
+                newUser.name = req.body.name;
+                newUser.description = req.body.description;
+                newUser.progress = req.body.progress;
                 await newUser.save();
                return done(null,newUser);
 
@@ -62,9 +68,12 @@ passport.use('local-signup', new LocalStrategy(
         {
             usernameField: 'email',
             passwordField: 'password',
+            nameField: 'name',
+            descriptionField: 'description',
+            progressField: 'progress',
             passReqToCallback: true // para pasarle todos los datos, no sólo los indicados
         },
-       async(req, email, password, done) => {
+       async(req, email, password, done,name, description) => {
     
             // Validación usuario
             const user = await User.findOne({ email : email});
@@ -78,7 +87,7 @@ passport.use('local-signup', new LocalStrategy(
             }
             // Comprobamos el password
             if(user.comparePassword(password)){
-                console.log("password ok");
+                console.log("password ok "+name + " "+ description);
                 return done(null,user); // resultado ok, devuelvo null porque no hay error y el usuario
 
                  // este mensaje hemos de mostrarlo a través de index.js antes de routes   

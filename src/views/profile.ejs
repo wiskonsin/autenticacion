@@ -2,4 +2,15 @@
 <%- layout('layouts/main.ejs') %>
 
 
-<h1 class="mt-4 mb-4">Profile</h1>
+
+
+<div class="jumbotron mt-4">
+        <h1 class="mb-4">Perfil</h1>
+<h4>email: <%- user.email %></h4>
+<h4>Nombre: <%- user.name %></h4>
+<h4>Sobre mí: <%- user.description %></h4>
+<h4>Progreso: <%= user.progress %> %</h4>
+<div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="<%= user.progress %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= user.progress %>%"></div>
+  </div>
+</div>

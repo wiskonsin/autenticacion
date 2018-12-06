@@ -6,7 +6,10 @@ const bcrypt = require('bcrypt-nodejs');
 
 const userSchema = new Schema ({
     email: String,
-    password: String
+    password: String,
+    name: String,
+    description: String,
+    progress: Number
 })
 
 // Definimos los métodos de encriptado/desencriptado
