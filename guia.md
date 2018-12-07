@@ -122,3 +122,10 @@ Para mostrar diferentes menús o lo que sea en función de si estoy logeado o no
 Teniendo en cuenta que una vez autenticado, passport guarda la autenticacion en req.user, lo guardamos en una variable local accesible desde toda la aplicación
 
 Hecho eso, en la vista main.ejs hago la comparación para que muestre un menú u otro
+
+////
+
+Instalamos sockets
+
+////
+

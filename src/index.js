@@ -11,13 +11,55 @@ const app = express();
 require('./database');
 require('./passport/local-auth')
 
-
 // settings
 app.set('views', path.join(__dirname,'views')); // defino dónde está la carpeta de vistas
 // con .join(__dirname) obtengo el directorio actual en donde está este fichero index.js
 //finalmente lo concateno con la carpeta 'views'
 app.engine('ejs',engine); // usa el motor de plantillas que acabamos de definir
 app.set('view engine', 'ejs');
+
+//////////////////// SOCKETS ////////////////////
+
+// parte sockets
+var server = require('http').Server(app);
+var io = require('socket.io')(server); // npm install socket.io --save
+
+var messages = [{
+  id:1,
+  text: "Bienvenido al canal de prueba",
+  author: "Master del universo"
+}]
+
+// comenzamos a escuchar
+io.on('connection',function(socket){
+  console.log("Alguien se ha conectado");
+  // emitimos el evento para que lo escuche el socket
+  socket.emit('messages',messages);
+  // escuchamos el evento de nuevo mensaje y hacemos algo con los datos que nos pasan
+  socket.on('newmessage',function(data){
+  // añadimos en el array mensajes ese nuevo mensaje
+      messages.push(data);
+  io.sockets.emit('messages',messages); // enviamos el mensaje a todos los clientes conectados al socket!
+  console.log(`${data.author} ha escrito "${data.text}"`);
+  });
+
+});
+
+
+
+// Por otro lado tendrá que haber una página web con un código javascript que envíe ese mensaje "connection"
+// Ello se creará en la carpeta public
+
+// para poder usar la parte pública usaremos un middleware que trae express y que se llama Static (ver línea 14 app.use....)
+
+// Esto siempre al final para que el servidor se ponga a escuchar
+server.listen(1231, function(){
+  console.log("Servidor funcionando en http://localhost:1231");
+});
+// para ejecutarlo, desde consola, node server/main.js
+
+/////////////// fin sockets ///////////////
+
 
 
 // MIDDLEWARES (definimos esto antes de Routes)
@@ -48,6 +90,7 @@ app.use(passport.session()); // Almacenamos datos en la sesión
 
 // en public irán todos los ficheros estáticos de la página
 app.use(express.static('public'));
+
 
 app.use(express.urlencoded({extended: false})); // Este middleware nos ayudará a debuggear durante el POST
 

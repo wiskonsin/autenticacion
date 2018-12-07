@@ -1,0 +1,15 @@
+<script src="/socket.io/socket.io.js"></script>
+<script src="sockets/main.js"></script>
+<%- layout('layouts/main.ejs') %>
+
+
+<div class="jumbotron mt-4">
+        <div class="container">
+<h1>My APP</h1>
+    <div id="messages"></div>
+    <br>
+    <form onsubmit="return addMessage(this)">
+        <input type="text" id="username" placeholder="Tu nombre">
+        <input type="text" id="texto" placeholder="Mensaje a enviar">
+        <input type="submit" value="Enviar">
+    </form>
