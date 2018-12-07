@@ -58,9 +58,9 @@ io.on('connection',function(socket){
 // para poder usar la parte pública usaremos un middleware que trae express y que se llama Static (ver línea 14 app.use....)
 
 // Esto siempre al final para que el servidor se ponga a escuchar
-server.listen(1231, function(){
+/*server.listen(1231, function(){
   console.log("Servidor funcionando en http://localhost:1231");
-});
+});*/
 // para ejecutarlo, desde consola, node server/main.js
 
 /////////////// fin sockets ///////////////
@@ -124,6 +124,10 @@ app.use('/',require('./routes/index.js'));
 var port = process.env.PORT || 3000; // con esto le digo que coja el puerto por defecto y si está ocupado que coja el 3000
 
   
-  app.listen(port, function () {
+  /*app.listen(port, function () {
+    console.log('Servidor escuchando a través del puerto %d', port);
+  }); */
+
+  server.listen(port, function () {
     console.log('Servidor escuchando a través del puerto %d', port);
   }); 
