@@ -6,33 +6,20 @@
 
 <div class="jumbotron mt-4">
     <div class="container">
-        <h1>Perfil</h1>
+        <h1><%- user.name %></h1>
 
         <div class="row">
-            <div class="col-sm">
-                <div class="card border-secondary mb-3" style="max-width: 30rem;">
-                    <div class="card-header">Perfil</div>
+            <div class="col-xl">
                     <div class="card-body">
-<h4>email: <%- user.email %></h4>
-<h4>Nombre: <%- user.name %></h4>
-<h4>Sobre mí: <%- user.description %></h4>
+
 <h4>Progreso: <%= user.progress %> %</h4>
 <div class="progress">
     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="<%= user.progress %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= user.progress %>%"></div>
   </div>
 </div>
 </div>
-</div>
 
-      <div class="col-sm">
-          <div class="card border-secondary mb-3" style="max-width: 30rem;">
-              <div class="card-header">Avatar</div>
-              <div class="card-body">
-                 <img class="avatar" src="https://media.apnarm.net.au/media/images/2015/02/13/9-2666347-scn020215vikings_fct768x576x77.0_ct677x380.jpg" alt="avatar">
-                
-              </div>
-            </div>
-      </div>
+
     </div>
 </div>
 

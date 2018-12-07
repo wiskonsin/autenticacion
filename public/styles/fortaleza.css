@@ -10,6 +10,9 @@
     border-radius: 10%; max-width: 20rem;
 }
 
+.menuppal{
+}
+
 body{
     background-image: url("../assets/images/bg.jpg");
     background-repeat: no-repeat;

@@ -16,6 +16,9 @@ router.get('/signup',(req, res, next) =>{
 
 }); // cuando el usuario ingrese en la carpeta  /signup, manejaremos la petición con un request un response y un next, con el método get
 
+router.get('/comeback',(req, res, next) =>{
+    res.render('comeback');
+}); // cuando el usuario ingrese en la carpeta  /comeback, manejaremos la petición con un request un response y un next, con el método get
 
 router.post('/signup', passport.authenticate('local-signup',{
     //redireccionamos al usuario
@@ -35,6 +38,13 @@ router.get('/signin',(req, res, next) =>{
 
 }); // cuando el usuario ingrese en la carpeta  /signin, manejaremos la petición con un request un response y un next, con el método get
 
+router.get('/comeback',(req, res, next) =>{
+
+    res.render('comeback');
+
+
+});
+
 // con la autenticación de passport redireccionamos a profile
 router.post('/signin', passport.authenticate('local-signin',{
     //redireccionamos al usuario
@@ -47,9 +57,8 @@ router.post('/signin', passport.authenticate('local-signin',{
 
 router.get('/logout', (req, res, next) => {
     req.logout();
-    res.render('index'); // creamos vista llamada profile
-
-
+    res.render('comeback'); // creamos vista llamada comeback
+    next();
 });
 
 // pero aún no se está creando la autenticación
