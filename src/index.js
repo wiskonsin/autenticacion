@@ -11,6 +11,11 @@ const app = express();
 require('./database');
 require('./passport/local-auth')
 
+require('dns').lookup(require('os').hostname(), function (err, add, fam) {
+  serverip = add;
+  console.log(serverip);
+})
+
 // settings
 app.set('views', path.join(__dirname,'views')); // defino dónde está la carpeta de vistas
 // con .join(__dirname) obtengo el directorio actual en donde está este fichero index.js

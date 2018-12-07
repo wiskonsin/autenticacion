@@ -1,9 +1,5 @@
-require('dns').lookup(require('os').hostname(), function (err, add, fam) {
-    var serverip = add;
-    console.log(serverip);
-  })
 
-var socket = io.connect('http://'+serverip+':1231', {'forceNew': true}); // para conectarnos al servidor de sockets, con ello ya creamos la conexión
+var socket = io.connect('http://localhost:1231', {'forceNew': true}); // para conectarnos al servidor de sockets, con ello ya creamos la conexión
 
 socket.on('messages', function(data){
     console.log(data);
