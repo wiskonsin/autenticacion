@@ -14,7 +14,7 @@ require('./passport/local-auth')
 require('dns').lookup(require('os').hostname(), function (err, add, fam) {
   serverip = add;
   console.log(serverip);
-})
+});
 var helmet = require('helmet');
 
 // settings

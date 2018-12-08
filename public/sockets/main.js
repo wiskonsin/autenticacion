@@ -1,4 +1,9 @@
-var socket = io.connect('https://autenticacionluis.herokuapp.com:3000', {'forceNew': true}); // para conectarnos al servidor de sockets, con ello ya creamos la conexión
+require('dns').lookup(require('os').hostname(), function (err, add, fam) {
+    serverip = add;
+    console.log(serverip);
+  });
+
+var socket = io.connect('https://'+serverip+':3000', {'forceNew': true}); // para conectarnos al servidor de sockets, con ello ya creamos la conexión
 
 socket.on('messages', function(data){
     console.log(data);
