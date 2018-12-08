@@ -23,7 +23,7 @@ function render(data){
     // Con ${} puedo meter todo lo que esté en la variable
     var html = data.map(function(elem, index){
         return( `<div>
-        <strong>${elem.name}</strong>:
+        <strong>${elem.author}</strong>:
         <em>${elem.text}</em>
     </div>`);
     }).join(" "); // con join lo separamos con espacios en este caso
