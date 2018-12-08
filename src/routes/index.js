@@ -20,7 +20,7 @@ router.get('/comeback',(req, res, next) =>{
     res.render('comeback');
 }); // cuando el usuario ingrese en la carpeta  /comeback, manejaremos la petición con un request un response y un next, con el método get
 
-router.get('/app',(req, res, next) =>{
+router.get('/app',isAuthenticated,(req, res, next) =>{
     res.render('app');
 }); // cuando el usuario ingrese en la carpeta  /comeback, manejaremos la petición con un request un response y un next, con el método get
 
