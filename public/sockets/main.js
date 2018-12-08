@@ -32,11 +32,3 @@ function render(data){
    
     document.getElementById("messages").innerHTML = html;
 }
-
-var logout = document.getElementById("logout");
-logout.addEventListener("click", desconectar);
-
-function desconectar(){
-    console.log("Desconectando cliente");
-    socket.disconnect();
-}
