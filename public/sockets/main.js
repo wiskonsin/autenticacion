@@ -1,4 +1,4 @@
-var socket = io.connect('http://localhost:3000', {'forceNew': true}); // para conectarnos al servidor de sockets, con ello ya creamos la conexión
+var socket = io.connect('https://localhost:3000', {'forceNew': true}); // para conectarnos al servidor de sockets, con ello ya creamos la conexión
 
 socket.on('messages', function(data){
     console.log(data);
