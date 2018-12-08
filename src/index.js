@@ -15,6 +15,7 @@ require('dns').lookup(require('os').hostname(), function (err, add, fam) {
   serverip = add;
   console.log(serverip);
 })
+var helmet = require('helmet');
 
 // settings
 app.set('views', path.join(__dirname,'views')); // defino dónde está la carpeta de vistas
@@ -22,7 +23,7 @@ app.set('views', path.join(__dirname,'views')); // defino dónde está la carpet
 //finalmente lo concateno con la carpeta 'views'
 app.engine('ejs',engine); // usa el motor de plantillas que acabamos de definir
 app.set('view engine', 'ejs');
-
+app.use(helmet());
 //////////////////// SOCKETS ////////////////////
 
 // parte sockets
