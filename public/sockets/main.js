@@ -11,7 +11,7 @@ socket.on('messages', function(data){
 
 function addMessage(e){
     var payload = {
-        author: document.getElementById("usuario").value,
+        author: document.getElementById("name").value,
         text: document.getElementById("texto").value
     };
 
@@ -23,7 +23,7 @@ function render(data){
     // Con ${} puedo meter todo lo que esté en la variable
     var html = data.map(function(elem, index){
         return( `<div>
-        <strong>${document.getElementById("usuario").value}</strong>:
+        <strong>${document.getElementById("name").value}</strong>:
         <em>${elem.text}</em>
     </div>`);
     }).join(" "); // con join lo separamos con espacios en este caso
