@@ -32,8 +32,8 @@ var io = require('socket.io')(server); // npm install socket.io --save
 
 var messages = [{
   id:1,
-  text: "Bienvenido al canal de prueba",
-  author: "Master del universo"
+  text: "Bienvenido al canal general de PYR",
+  author: "El Rey Supremo"
 }]
 
 // comenzamos a escuchar

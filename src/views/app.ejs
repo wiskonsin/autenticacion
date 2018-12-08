@@ -6,12 +6,13 @@
 
 <div class="jumbotron mt-4">
         <div class="container">
-<h1>My APP</h1>
+<h1>Chat general</h1>
     <div id="messages"></div>
     <br>
     <form onsubmit="return addMessage(this)">
-        
-        <input style="visibility: hidden" type="text" id="name" value="<%- user.name %>">
-        <input type="text" id="texto" placeholder="Mensaje a enviar">
-        <input type="submit" value="Enviar">
+        <div class="form-group">
+                <input style="visibility: hidden" type="text" id="name" value="<%- user.name %>" class="form-control">
+                <input type="text" id="texto" placeholder="Mensaje a enviar" class="form-control">
+        </div>    
+        <button class="btn btn-primary btn-block mt-4" type="submit">Enviar</button>
     </form>
