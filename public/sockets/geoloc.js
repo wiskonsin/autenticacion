@@ -23,9 +23,9 @@ function showPosition(position) {
   var distancia = (Math.sin(deltaLat/2))*(Math.sin(longitudCentro/2))+
   (Math.cos(latitud))*(Math.cos(latitudCentro))*
   (Math.sin(deltaLon/2))*(Math.sin(deltaLon/2));
-  distancia = 2*Math.atan2(Math.sqrt(distancia),Math,sqrt(1-distancia));
+  distancia = 2*Math.atan2(Math.sqrt(distancia),Math.sqrt(1-distancia));
   distancia = radioTierra*distancia;
-  x.innerHTML = "Latitude: " + latitud + 
-  "<br>Longitude: " + longitud +
+  x.innerHTML = "Latitud: " + latitud + 
+  "<br>Longitud: " + longitud +
   "<br>Distancia al centro: " + distancia;
 }
