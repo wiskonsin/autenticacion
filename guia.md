@@ -129,3 +129,8 @@ Instalamos sockets
 
 ////
 
+En index.js del src nos ponemos a escuchar con Sockets, en este caso, sólo vamos a escuchar la parte del chat (app.js).
+
+Dentro de la escucha, estableceremos todas las acciones a realizar desde el servidor cuando recibamos acciones por parte del cliente.
+
+Con sockets podemos emitir, sólo al cliente que estableció la conexión (socket.emit) o a todos los clientes que estén escuchando (io.sockets.emit)
