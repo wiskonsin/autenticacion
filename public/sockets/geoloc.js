@@ -13,23 +13,25 @@ function getLocation() {
 }
 
 function showPosition(position) {
-  var latitud = position.coords.latitude;
-  var longitud = position.coords.longitude;
-  var latitudCentro = 43.462391;
-  var longitudCentro = -3.809801;
-  var radioTierra = 6378;
-  var deltaLat = (latitudCentro - latitud)*Math.PI/180;
-  var deltaLon = (longitudCentro - longitud)*Math.PI/180;
-  latitud = latitud*Math.PI/180;
-  longitud = longitud*Math.PI/180;
-  latitudCentro = latitudCentro*Math.PI/180;
-  longitudCentro = longitudCentro*Math.PI/180;
-  var distancia = (Math.sin(deltaLat/2))*(Math.sin(longitudCentro/2))+
-  (Math.cos(latitud))*(Math.cos(latitudCentro))*
-  (Math.sin(deltaLon/2))*(Math.sin(deltaLon/2));
-  distancia = 2*Math.atan2(Math.sqrt(distancia),Math.sqrt(1-distancia));
-  distancia = radioTierra*distancia;
+  var lat1 = position.coords.latitude;
+  var lon1 = position.coords.longitude;
+  var lat2 = 43.462391;
+  var lon2 = -3.809801;
+  var R = 6371; // Radius of the earth in km
+  var dLat = deg2rad(lat2-lat1);  // deg2rad below
+  var dLon = deg2rad(lon2-lon1); 
+  var a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2)
+    ; 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var d = R * c; // Distance in km
   x.innerHTML = "Latitud: " + latitud + 
   "<br>Longitud: " + longitud +
-  "<br>Distancia al centro: " + distancia;
+  "<br>Distancia al centro: " + d + " km";
 }
+
+function deg2rad(deg) {
+    return deg * (Math.PI/180)
+  }
