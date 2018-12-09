@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { Schema} = mongoose; // Usamos el Schema de la biblioteca mongoose
+const {Schema} = mongoose; // Usamos el Schema de la biblioteca mongoose
 const bcrypt = require('bcrypt-nodejs');
 
 // inicializamos el schema
@@ -9,7 +9,8 @@ const userSchema = new Schema ({
     password: String,
     name: String,
     description: String,
-    progress: Number
+    progress: Number,
+    madera: Number
 })
 
 // Definimos los métodos de encriptado/desencriptado

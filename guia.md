@@ -134,3 +134,14 @@ En index.js del src nos ponemos a escuchar con Sockets, en este caso, sólo vamo
 Dentro de la escucha, estableceremos todas las acciones a realizar desde el servidor cuando recibamos acciones por parte del cliente.
 
 Con sockets podemos emitir, sólo al cliente que estableció la conexión (socket.emit) o a todos los clientes que estén escuchando (io.sockets.emit)
+
+
+/// Geolocalizacion ///
+
+Creada función geoloc.js para obtener geolocalización y distancia hasta el ayuntamiento
+
+Por otro lado, se ha creado la parte de suministros, dentro de game.
+
+Crear base de datos con varias zonas de suministros.
+
+Creada función de ejemplo que cada vez que arranca servidor, se resta uno a un suministro de la base de datos. (game.js, model suministros.js)

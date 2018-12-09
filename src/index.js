@@ -9,12 +9,14 @@ const flash = require('connect-flash');
 // Inicializaciones
 const app = express();
 require('./database');
-require('./passport/local-auth')
+require('./passport/local-auth');
+require('./game/game');
 
-require('dns').lookup(require('os').hostname(), function (err, add, fam) {
+/*require('dns').lookup(require('os').hostname(), function (err, add, fam) {
   serverip = add;
   console.log(serverip);
-});
+});*/
+
 var helmet = require('helmet');
 
 // settings
@@ -122,7 +124,7 @@ app.use('/',require('./routes/index.js'));
 
 // aquí comienzo a escuchar por el puerto que sea, y a parte lo imprimo por consola
 
-var port = process.env.PORT || 3000; // con esto le digo que coja el puerto por defecto y si está ocupado que coja el 3000
+var port = process.env.PORT || 3200; // con esto le digo que coja el puerto por defecto y si está ocupado que coja el 3000
 
   
   /*app.listen(port, function () {
