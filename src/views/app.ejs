@@ -1,5 +1,6 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="//autenticacionluis.herokuapp.com/sockets/main.js"></script>
+<script src="//autenticacionluis.herokuapp.com/sockets/geoloc.js"></script>
 
 <%- layout('layouts/main.ejs') %>
 
@@ -16,3 +17,13 @@
         </div>    
         <button class="btn btn-primary btn-block mt-4" type="submit">Enviar</button>
     </form>
+
+    </div>
+    </div>
+
+    <div class="jumbotron mt-4">
+                <div class="container">
+                        <div><p id="geo">
+
+                        </p></div>
+                        <button class="btn btn-primary btn-block mt-4" id="geoloc"> GEO</button>
