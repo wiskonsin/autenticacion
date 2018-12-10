@@ -27,6 +27,47 @@ async function suministrar(){
         console.log("Suministro agotado.");
     }
 };
-suministrar();
+//suministrar();
+
+async function recolectaCliente(newSuministro){
+
+    
+    try {  const suministro = await Suministro.findOne({  "longitud": { $gt: newSuministro.longitud-0.002, $lt: newSuministro.longitud+0.002 },
+                                        "latitud": { $gt: newSuministro.latitud-0.002, $lt: newSuministro.latitud+0.002 } }, function(err, result) {
+        if (err){
+            console.log(err);
+        }
+        else{
+            var cantidad = suministro[0].cantidad;
+            var id = suministro[0]._id;
+            var suministro = {
+                cantidad: cantidad,
+                id: id
+            }
+            return suministro;
+        }
+    })        
+     } catch (e) {
+        console.log(e);
+     }
+}
+
+async function actualizaSuministro(suministro){
+
+    var id = suministro.id;
+    var cantidad = suministro.cantidad;
+    if(suministro.cantidad>0){
+        try {
+            await Suministro.updateOne({id:id}, {$set:{cantidad:cantidad-1}}, function(err, result) {
+                if (err){
+                    console.log(err);
+                }});
+        }
+        catch(e){
+            console.log(e);
+        }
+    }
+
+}
 
     

@@ -38,6 +38,11 @@ var messages = [{
   author: "El Rey Supremo"
 }]
 
+var suministro = [{
+  latitud:0,
+  longitud:0
+}]
+
 // comenzamos a escuchar
 io.on('connection',function(socket){
   console.log("Alguien se ha conectado");
@@ -50,6 +55,22 @@ io.on('connection',function(socket){
   io.sockets.emit('messages',messages); // enviamos el mensaje a todos los clientes conectados al socket!
   console.log(`${data.author} ha escrito "${data.text}"`);
   });
+
+
+
+  // escuchamos el evento de nueva recolecta y hacemos algo con los datos que nos pasan
+  socket.on('newRecolecta',function(data){
+    // añadimos en el array mensajes ese nuevo mensaje
+      suministro[0].latitud = data.latitud;
+      suministro[0].longitud = data.longitud;
+    
+    // comprobamos DB
+
+    actualizaSuministro(recolectaCliente(suministro));
+
+    socket.emit('recolecta',suministro); // enviamos el mensaje solo al cliente escuchando
+    console.log(`${data.cantidad} de "${data.tipo}"`);
+    });
 
 });
 

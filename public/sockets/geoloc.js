@@ -1,15 +1,27 @@
-var x = document.getElementById("geo");
+var latitud = document.getElementById("geolat");
+var longitud = document.getElementById("geolon");
+var distancia = document.getElementById("distancia");
 
 var boton = document.getElementById("geoloc");
 boton.addEventListener("click",getLocation);
+
+var socket = io.connect('//autenticacionluis.herokuapp.com', {'forceNew': true}); // para conectarnos al servidor de sockets, con ello ya creamos la conexión
+
+socket.on('suministros', function(data){
+    console.log(data);
+    render(data); // llamamos a la función render que hemos creado más abajo
+
+}); // evento que queremos escuchar (suministros)
 
 function getLocation() {
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
   } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
+    latitud.innerHTML = "Geolocation is not supported by this browser.";
+    longitud.innerHTML = "Geolocation is not supported by this browser.";
   }
+
 }
 
 function showPosition(position) {
@@ -27,11 +39,35 @@ function showPosition(position) {
     ; 
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
   var d = R * c; // Distance in km
-  x.innerHTML = "Latitud: " + lat1 + 
-  "<br>Longitud: " + lon1 +
-  "<br>Distancia al centro: " + d + " km";
+  latitud.innerHTML = lat1;
+  longitud.innerHTML = lon1;
+  distancia.innerHTML = d;
+
+  var payload = {
+    latitud: lat1,
+    longitud: lon1
+};
+
+  socket.emit('newRecolecta',payload); // emitimos el evento newmessage con el contenido payload
+
 }
 
 function deg2rad(deg) {
     return deg * (Math.PI/180)
   }
+
+
+  function render(data){
+    // Con la notación `` nos permite escribir lo que queramos en el string, dentro de las comillas
+    // Con ${} puedo meter todo lo que esté en la variable
+    var html = data.map(function(elem, index){
+        return( `<div>
+        <strong>${elem.tipo}</strong>:
+        <em>${elem.cantidad}</em>
+    </div>`);
+    }).join(" "); // con join lo separamos con espacios en este caso
+    
+    
+   
+    document.getElementById("suministro").innerHTML = html;
+}
