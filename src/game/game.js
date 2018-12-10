@@ -29,45 +29,42 @@ async function suministrar(){
 };
 //suministrar();
 
-async function recolectaCliente(newSuministro){
 
-    
-    try {  const suministro = await Suministro.findOne({  "longitud": { $gt: newSuministro.longitud-0.002, $lt: newSuministro.longitud+0.002 },
-                                        "latitud": { $gt: newSuministro.latitud-0.002, $lt: newSuministro.latitud+0.002 } }, function(err, result) {
+module.exports = {
+    recolectaCliente: async function recolectaCliente(newSuministro){
+
+ const suministro = await Suministro.findOne({  lon: { $gt: newSuministro[0].longitud-10, $lt: newSuministro[0].longitud+10 },
+                                        lat: { $gt: newSuministro[0].latitud-10, $lt: newSuministro[0].latitud+10 } }, function(err, result) {
         if (err){
             console.log(err);
         }
-        else{
-            var cantidad = suministro[0].cantidad;
-            var id = suministro[0]._id;
-            var suministro = {
-                cantidad: cantidad,
-                id: id
-            }
-            return suministro;
-        }
-    })        
-     } catch (e) {
-        console.log(e);
-     }
-}
-
-async function actualizaSuministro(suministro){
-
-    var id = suministro.id;
-    var cantidad = suministro.cantidad;
-    if(suministro.cantidad>0){
-        try {
-            await Suministro.updateOne({id:id}, {$set:{cantidad:cantidad-1}}, function(err, result) {
-                if (err){
-                    console.log(err);
-                }});
-        }
-        catch(e){
-            console.log(e);
-        }
-    }
+            
+ 
+    }) 
+    
+     var suministros = {
+                cantidad: suministro.cantidad,
+                id: suministro._id,
+                lon: suministro.lon,
+                lat: suministro.lat,
+                tipo: suministro.tipo}
+                console.log("Suministro: "+suministros.id+" cantidad restante: "+suministros.cantidad);
+                if(suministro.cantidad>0){
+                    
+                    try {
+                        await Suministro.updateOne({_id:suministro._id}, {$set:{cantidad:suministro.cantidad-1}}, function(err, result) {
+                            if (err){
+                                console.log(err);
+                            }});
+                        return suministros}
+                    catch(e){
+                        console.log(e);
+                    }
+                }
+                else{
+                    console.log("No se ha actualizado.");
+                }
 
 }
-
+}
     

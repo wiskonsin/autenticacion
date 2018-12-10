@@ -10,7 +10,7 @@ const flash = require('connect-flash');
 const app = express();
 require('./database');
 require('./passport/local-auth');
-require('./game/game');
+var game = require('./game/game');
 
 /*require('dns').lookup(require('os').hostname(), function (err, add, fam) {
   serverip = add;
@@ -63,13 +63,14 @@ io.on('connection',function(socket){
     // añadimos en el array mensajes ese nuevo mensaje
       suministro[0].latitud = data.latitud;
       suministro[0].longitud = data.longitud;
-    
-    // comprobamos DB
-
-    actualizaSuministro(recolectaCliente(suministro));
-
-    socket.emit('recolecta',suministro); // enviamos el mensaje solo al cliente escuchando
-    console.log(`${data.cantidad} de "${data.tipo}"`);
+      async function recoleccion(){
+         var juego = await game.recolectaCliente(suministro);
+        console.log(juego);
+        io.sockets.emit('suministros',juego);
+      }
+      recoleccion();
+      
+    //socket.emit('recolecta',suministro); // enviamos el mensaje solo al cliente escuchando
     });
 
 });

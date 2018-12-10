@@ -6,9 +6,10 @@ var boton = document.getElementById("geoloc");
 boton.addEventListener("click",getLocation);
 
 var socket = io.connect('//autenticacionluis.herokuapp.com', {'forceNew': true}); // para conectarnos al servidor de sockets, con ello ya creamos la conexión
+//var socket = io.connect('localhost:3200', {'forceNew': true});
 
 socket.on('suministros', function(data){
-    console.log(data);
+    console.log("Llego?");
     render(data); // llamamos a la función render que hemos creado más abajo
 
 }); // evento que queremos escuchar (suministros)
