@@ -46,17 +46,16 @@ var suministro = [{
 // comenzamos a escuchar
 io.on('connection',function(socket){
   console.log("Alguien se ha conectado");
+  // CHAT //
   // emitimos el evento para que lo escuche el socket
-  socket.emit('messages',messages);
+ /* socket.emit('messages',messages);
   // escuchamos el evento de nuevo mensaje y hacemos algo con los datos que nos pasan
   socket.on('newmessage',function(data){
   // añadimos en el array mensajes ese nuevo mensaje
       messages.push(data);
   io.sockets.emit('messages',messages); // enviamos el mensaje a todos los clientes conectados al socket!
   console.log(`${data.author} ha escrito "${data.text}"`);
-  });
-
-
+  });*/
 
   // escuchamos el evento de nueva recolecta y hacemos algo con los datos que nos pasan
   socket.on('newRecolecta',function(data){
@@ -65,17 +64,13 @@ io.on('connection',function(socket){
       suministro[0].longitud = data.longitud;
       async function recoleccion(){
          var juego = await game.recolectaCliente(suministro);
-        console.log(juego);
+        //console.log(juego);
         io.sockets.emit('suministros',juego);
+        //socket.emit('suministros',suministro); // enviamos el mensaje solo al cliente escuchando
       }
       recoleccion();
-      
-    //socket.emit('recolecta',suministro); // enviamos el mensaje solo al cliente escuchando
     });
-
 });
-
-
 
 // Por otro lado tendrá que haber una página web con un código javascript que envíe ese mensaje "connection"
 // Ello se creará en la carpeta public
@@ -91,15 +86,12 @@ io.on('connection',function(socket){
 /////////////// fin sockets ///////////////
 
 
-
 // MIDDLEWARES (definimos esto antes de Routes)
-
 
 // Son las funciones a ejecutar antes del enrutado
 
 app.use(morgan('dev')); // queremos que ante cada petición del cliente se ejecute morgan y nos muestre los mensajes a nivel "dev". Hay más opciones
 // Hecho esto, si lanzamos una petición al servidor desde cualquier navegador, veremos cómo morgan muestra GET / 200.... mensajes de estado de las peticiones
-
 
 // configuración típica de sesión
 app.use(session({
@@ -107,7 +99,6 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
-
 
 //connect-flash
 app.use(flash()); // ha de ir antes de passport y después de las sesiones ya que hace uso de ellas
@@ -121,9 +112,7 @@ app.use(passport.session()); // Almacenamos datos en la sesión
 // en public irán todos los ficheros estáticos de la página
 app.use(express.static('public'));
 
-
 app.use(express.urlencoded({extended: false})); // Este middleware nos ayudará a debuggear durante el POST
-
 
 // este middleware es propio, dentro ya usamos flash
 app.use(((req,res,next)=>{
@@ -141,13 +130,11 @@ app.use(((req,res,next)=>{
 // Le decimos a express que utilice las rutas definidas por nosotrs cada vez que un usuario acceda al /
 app.use('/',require('./routes/index.js'));
 
-
 // start listening
 
 // aquí comienzo a escuchar por el puerto que sea, y a parte lo imprimo por consola
 
 var port = process.env.PORT || 3200; // con esto le digo que coja el puerto por defecto y si está ocupado que coja el 3000
-
   
   /*app.listen(port, function () {
     console.log('Servidor escuchando a través del puerto %d', port);

@@ -9,7 +9,6 @@ var socket = io.connect('//autenticacionluis.herokuapp.com', {'forceNew': true})
 //var socket = io.connect('localhost:3200', {'forceNew': true});
 
 socket.on('suministros', function(data){
-    console.log("Llego?");
     render(data); // llamamos a la función render que hemos creado más abajo
 
 }); // evento que queremos escuchar (suministros)
@@ -40,9 +39,9 @@ function showPosition(position) {
     ; 
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
   var d = R * c; // Distance in km
-  latitud.innerHTML = lat1;
-  longitud.innerHTML = lon1;
-  distancia.innerHTML = d;
+  latitud.innerHTML = "<strong>Latitud: </strong>"+lat1;
+  longitud.innerHTML = "<strong>Longitud: </strong>"+lon1;
+  distancia.innerHTML = "<strong>Distancia: </strong>"+d;
 
   var payload = {
     latitud: lat1,
@@ -61,7 +60,6 @@ function deg2rad(deg) {
   function render(data){
     // Con la notación `` nos permite escribir lo que queramos en el string, dentro de las comillas
     // Con ${} puedo meter todo lo que esté en la variable
-    console.log(data);
     if(data){
     var html =  `<div>
         <strong>${data.tipo}</strong>:
