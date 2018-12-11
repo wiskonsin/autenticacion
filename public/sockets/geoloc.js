@@ -61,14 +61,17 @@ function deg2rad(deg) {
   function render(data){
     // Con la notación `` nos permite escribir lo que queramos en el string, dentro de las comillas
     // Con ${} puedo meter todo lo que esté en la variable
-    var html = data.map(function(elem, index){
-        return( `<div>
-        <strong>${elem.tipo}</strong>:
-        <em>${elem.cantidad}</em>
-    </div>`);
-    }).join(" "); // con join lo separamos con espacios en este caso
-    
-    
-   
+    console.log(data);
+    if(data){
+    var html =  `<div>
+        <strong>${data.tipo}</strong>:
+        <em>${data.cantidad}</em>
+    </div>`;
+  }
+  else{
+    var html =  `<div>
+    <strong>Haz click en Geo para empezar a recolectar</strong>:
+</div>`;
+  }
     document.getElementById("suministro").innerHTML = html;
 }
