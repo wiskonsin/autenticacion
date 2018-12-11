@@ -62,7 +62,7 @@ module.exports = {
                     }
                 }
                 else{
-                    console.log("No se ha actualizado.");
+                    console.log("Suministro agotado.");
                 }
 
 }

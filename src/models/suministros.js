@@ -12,6 +12,7 @@ const suministroSchema = new Schema ({
 })
 
 // Definimos el método de recolección de suministros
+// NO LO ESTAMOS USANDO //
 
 suministroSchema.methods.recolecta = (cantidad) => {
 
