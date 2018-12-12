@@ -33,8 +33,8 @@ async function suministrar(){
 module.exports = {
     recolectaCliente: async function recolectaCliente(newSuministro){
 
- const suministro = await Suministro.findOne({  lon: { $gt: newSuministro[0].longitud-10, $lt: newSuministro[0].longitud+10 },
-                                        lat: { $gt: newSuministro[0].latitud-10, $lt: newSuministro[0].latitud+10 } }, function(err, result) {
+ const suministro = await Suministro.findOne({  lon: { $gt: newSuministro[0].longitud-0.002, $lt: newSuministro[0].longitud+0.002 },
+                                        lat: { $gt: newSuministro[0].latitud-0.002, $lt: newSuministro[0].latitud+0.002 } }, function(err, result) {
         if (err){
             console.log(err);
         }

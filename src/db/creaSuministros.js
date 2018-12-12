@@ -59,10 +59,13 @@ async function init(){
     await sleep(1000)
     console.log(2)
     console.log("Al lío");
+    
     while(lat <= limLatSup){
 
+        madera.lat = lat;
+        piedra.lat = lat;
+        metal.lat = lat;
         while(lon <= limLonSup){
-            madera.lat = lat;
             madera.lon = lon;
             crearMadera(madera);
             lon = lon + delta;
@@ -72,14 +75,11 @@ async function init(){
             metal.lon = lon;
             crearMetal(metal);
             lon = lon + delta;
-            console.log(lon);
+            await sleep(50)
         }
         lon = limLonInf;
         lat = lat + delta;
-        madera.lat = lat;
-        piedra.lat = lat;
-        metal.lat = lat;
-        console.log(lat);
+        await sleep(50)
     }
 
  }
@@ -89,23 +89,3 @@ async function init(){
     })
 }
  init();
-/*
-    while(lat <= limLatSup){
-        while(lon <= limLonSup){
-            madera.lat = lat;
-            madera.lon = lon;
-            crearMadera(madera);
-            lon = lon + delta;
-            piedra.lon = lon;
-            crearPiedra(piedra);
-            lon = lon + delta;
-            metal.lon = lon;
-            crearMetal(metal);
-            lon = lon + delta;
-        }
-        lon = limLonInf;
-        lat = lat + delta;
-        madera.lat = lat;
-        piedra.lat = lat;
-        metal.lat = lat;
-    }*/
