@@ -1,51 +1,111 @@
 const Suministro = require('../models/suministros.js'); // llamamos a suministros.js
+require('../database');
 
 var madera = {
     cantidad: 200,
     cantMax: 200,
     tipo: "Madera",
-    lat: 43.462391,
-    lon: -3.809801
+    lat: 42.76,
+    lon: -4.84
 }
 
 var piedra = {
     cantidad: 100,
     cantMax: 100,
     tipo: "Piedra",
-    lat: 43.462391,
-    lon: -3.809801
+    lat: 42.76,
+    lon: -4.84
 }
 
 var metal = {
     cantidad: 50,
     cantMax: 50,
     tipo: "Metal",
-    lat: 43.462391,
-    lon: -3.809801
+    lat: 42.76,
+    lon: -4.84
 }
 
+var limLatSup = 43.54;
+var limLonSup = -3.15;
+var limLatInf = 42.76;
+var limLonInf = -4.84;
 
+async function crearMadera(madera){
 
-async function crearMadera(){
-
-    await suministro.insertOne(madera, function(err, res) {
+    await Suministro.create(madera, function(err, res) {
         if (err) throw err;
         console.log("Madera insertada");
       });
     }
-async function crearPiedra(){   
-    await suministro.insertOne(piedra, function(err, res) {
+async function crearPiedra(piedra){   
+    await Suministro.create(piedra, function(err, res) {
         if (err) throw err;
         console.log("Piedra insertada");
     });
 }
-async function crearMetal(){   
-      await suministro.insertOne(metal, function(err, res) {
+async function crearMetal(metal){   
+      await Suministro.create(metal, function(err, res) {
         if (err) throw err;
-        console.log("Metal insertada");
+        console.log("Metal insertado");
     });
 }
 
-crearMadera();
-crearPiedra();
-crearMetal();
+var lat = limLatInf;
+var lon = limLonInf;
+var delta = 0.002;
+
+async function init(){
+    console.log(1)
+    await sleep(1000)
+    console.log(2)
+    console.log("Al lío");
+    while(lat <= limLatSup){
+
+        while(lon <= limLonSup){
+            madera.lat = lat;
+            madera.lon = lon;
+            crearMadera(madera);
+            lon = lon + delta;
+            piedra.lon = lon;
+            crearPiedra(piedra);
+            lon = lon + delta;
+            metal.lon = lon;
+            crearMetal(metal);
+            lon = lon + delta;
+            console.log(lon);
+        }
+        lon = limLonInf;
+        lat = lat + delta;
+        madera.lat = lat;
+        piedra.lat = lat;
+        metal.lat = lat;
+        console.log(lat);
+    }
+
+ }
+ function sleep(ms){
+    return new Promise(resolve=>{
+        setTimeout(resolve,ms)
+    })
+}
+ init();
+/*
+    while(lat <= limLatSup){
+        while(lon <= limLonSup){
+            madera.lat = lat;
+            madera.lon = lon;
+            crearMadera(madera);
+            lon = lon + delta;
+            piedra.lon = lon;
+            crearPiedra(piedra);
+            lon = lon + delta;
+            metal.lon = lon;
+            crearMetal(metal);
+            lon = lon + delta;
+        }
+        lon = limLonInf;
+        lat = lat + delta;
+        madera.lat = lat;
+        piedra.lat = lat;
+        metal.lat = lat;
+    }*/
