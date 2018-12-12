@@ -43,6 +43,26 @@ function showPosition(position) {
   longitud.innerHTML = "<strong>Longitud: </strong>"+lon1;
   distancia.innerHTML = "<strong>Distancia: </strong>"+d;
 
+//////MAPS
+
+function initMap() {
+  var myLatLng = {lat: lat1, lng: lon1};
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: myLatLng
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'Estás aquí'
+  });
+}
+
+/////// MAPS
+
+  
   var payload = {
     latitud: lat1,
     longitud: lon1
@@ -65,6 +85,7 @@ function deg2rad(deg) {
         <strong>${data.tipo}</strong>:
         <em>${data.cantidad}</em>
     </div>`;
+
   }
   else{
     var html =  `<div>
