@@ -1,6 +1,6 @@
-var socket = io.connect('//autenticacionluis.herokuapp.com', {'forceNew': true}); // para conectarnos al servidor de sockets, con ello ya creamos la conexión
+//var socket = io.connect('//autenticacionluis.herokuapp.com', {'forceNew': true}); // para conectarnos al servidor de sockets, con ello ya creamos la conexión
 
-//var socket = io.connect('localhost:3200', {'forceNew': true}); // para conectarnos al servidor de sockets, con ello ya creamos la conexión
+var socket = io.connect('localhost:3200', {'forceNew': true}); // para conectarnos al servidor de sockets, con ello ya creamos la conexión
 
 socket.on('messages', function(data){
     console.log(data);

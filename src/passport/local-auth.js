@@ -87,7 +87,6 @@ passport.use('local-signup', new LocalStrategy(
             }
             // Comprobamos el password
             if(user.comparePassword(password)){
-                console.log("password ok "+name + " "+ description);
                 return done(null,user); // resultado ok, devuelvo null porque no hay error y el usuario
 
                  // este mensaje hemos de mostrarlo a través de index.js antes de routes   

@@ -1,6 +1,6 @@
 <script src="/socket.io/socket.io.js"></script>
 <!--<script src="//autenticacionluis.herokuapp.com/sockets/main.js"></script>-->
-
+<script src="./sockets/main.js"></script>
 <%- layout('layouts/main.ejs') %>
 
 <!--
@@ -30,35 +30,9 @@
                         </div>
                         <div id="suministro"></div>
                         <div id="map" style="display:none"></div>
-                        <button class="btn btn-primary btn-block mt-4" id="geoloc" onclick="initMap(),displayMap()"> Recolectar</button>
+                        <button class="btn btn-primary btn-block mt-4" id="geoloc" > Recolectar</button>
 
-                      <script src="//autenticacionluis.herokuapp.com/sockets/geoloc.js"></script>
-                  <!--   <script src="http://localhost:3200/sockets/geoloc.js"></script>-->
+                     <!--   <script src="//autenticacionluis.herokuapp.com/sockets/geoloc.js"></script>-->
+                   <script src="http://localhost:3200/sockets/geoloc.js"></script>
                  
-    <script>
-    //////MAPS
 
-function initMap() {
-  
-  var lat1 = parseFloat(document.getElementById("geolat").innerHTML);
-  var lon1 = parseFloat(document.getElementById("geolon").innerHTML);
-  var myLatLng = {lat: lat1, lng: lon1};
-
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 16,
-    center: myLatLng
-  });
-
-  var marker = new google.maps.Marker({
-    position: myLatLng,
-    map: map,
-    title: 'Estás aquí'
-  });
-  
-}
-
-function displayMap(){
-        document.getElementById('map').style.display='block';
-}
-/////// MAPS
-</script>
