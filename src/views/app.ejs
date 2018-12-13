@@ -41,7 +41,23 @@
     <script>
     //////MAPS
 
-    import { initMap } from 'geoloc.js'; // or './module'
+function initMap() {
+  
+  var lat1 = document.getElementById("geolat").innerHTML;
+  var lon1 = document.getElementById("geolon").innerHTML;
+  var myLatLng = {lat: lat1, lng: lon1};
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: myLatLng
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'Estás aquí'
+  });
+}
 
 /////// MAPS
 </script>
