@@ -39,8 +39,10 @@ function showPosition(position) {
     ; 
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
   var d = R * c; // Distance in km
-  latitud.innerHTML = "<strong>Latitud: </strong>"+lat1;
-  longitud.innerHTML = "<strong>Longitud: </strong>"+lon1;
+  //latitud.innerHTML = "<strong>Latitud: </strong>"+lat1;
+  //longitud.innerHTML = "<strong>Longitud: </strong>"+lon1;
+  latitud.innerHTML = lat1;
+  longitud.innerHTML = lon1;
   distancia.innerHTML = "<strong>Distancia: </strong>"+d;
 
 //////MAPS
