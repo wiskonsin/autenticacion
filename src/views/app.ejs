@@ -29,8 +29,8 @@
                                 <p id="distancia"></p>
                         </div>
                         <div id="suministro"></div>
-                        <div id="map"></div>
-                        <button class="btn btn-primary btn-block mt-4" id="geoloc" onclick="initMap()"> Recolectar</button>
+                        <div id="map" style="display:none"></div>
+                        <button class="btn btn-primary btn-block mt-4" id="geoloc" onclick="initMap(),displayMap()"> Recolectar</button>
 
                       <script src="//autenticacionluis.herokuapp.com/sockets/geoloc.js"></script>
                   <!--   <script src="http://localhost:3200/sockets/geoloc.js"></script>-->
@@ -40,13 +40,12 @@
 
 function initMap() {
   
-  var lat1 = parseFloat(document.getElementById("geolat").nodeValue);
-  var lon1 = parseFloat(document.getElementById("geolon").nodeValue);
-  console.log(lat1+" "+lon1);
+  var lat1 = parseFloat(document.getElementById("geolat").innerHTML);
+  var lon1 = parseFloat(document.getElementById("geolon").innerHTML);
   var myLatLng = {lat: lat1, lng: lon1};
 
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
+    zoom: 16,
     center: myLatLng
   });
 
@@ -55,8 +54,12 @@ function initMap() {
     map: map,
     title: 'Estás aquí'
   });
+  
 }
 
+function displayMap(){
+        document.getElementById('map').style.display='block';
+}
 /////// MAPS
 </script>
  <script async defer
