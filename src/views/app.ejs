@@ -3,23 +3,6 @@
 <script src="./sockets/main.js"></script>
 <%- layout('layouts/main.ejs') %>
 
-<!--
-<div class="jumbotron mt-4">
-        <div class="container">
-<h1>Chat general</h1>
-    <div id="messages"></div>
-    <br>
-    <form onsubmit="return addMessage(this)">
-        <div class="form-group">
-                <input style="visibility: hidden" type="text" id="name" value="<%- user.name %>" class="form-control">
-                <input type="text" id="texto" placeholder="Mensaje a enviar" class="form-control">
-        </div>    
-        <button class="btn btn-primary btn-block mt-4" type="submit">Enviar</button>
-    </form>
-
-    </div>
-    </div>
--->
     <div class="jumbotron mt-4">
                 <div class="container">
                         <h1>Recolecta recursos</h1>
@@ -29,10 +12,18 @@
                                 <p id="distancia"></p>
                         </div>
                         <div id="suministro"></div>
-                        <div id="map" style="display:none"></div>
                         <button class="btn btn-primary btn-block mt-4" id="geoloc" > Recolectar</button>
+                </div>
+                <div class="container">
+                        <div id="map">
+
+                        </div>
 
                      <!--   <script src="//autenticacionluis.herokuapp.com/sockets/geoloc.js"></script>-->
-                   <script src="http://localhost:3200/sockets/geoloc.js"></script>
-                 
+                   <script src="http://localhost:3200/sockets/geoloc.js">
+                </script>
 
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_wkz5lw2oywmDcQwQu4CZRnr6KaMq9WE">
+
+    </script>

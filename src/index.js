@@ -5,7 +5,6 @@ const morgan = require('morgan');
 const passport = require('passport');
 const session = require('express-session');
 const flash = require('connect-flash');
-const GoogleMapsAPI = require('googlemaps');
 
 // Inicializaciones
 const app = express();
@@ -44,13 +43,6 @@ var suministro = [{
   longitud:0
 }]
 
-var publicConfig = {
-  key: 'AIzaSyD_wkz5lw2oywmDcQwQu4CZRnr6KaMq9WE',
-  stagger_time:       1000, // for elevationPath
-  encode_polylines:   false,
-  secure:             true, // use https,
-};
-var gmAPI = new GoogleMapsAPI(publicConfig);
 
 // comenzamos a escuchar
 io.on('connection',function(socket){
@@ -76,61 +68,6 @@ io.on('connection',function(socket){
         //console.log(juego);
         io.sockets.emit('suministros',juego);
         //socket.emit('suministros',suministro); // enviamos el mensaje solo al cliente escuchando
-        
-        var reverseGeocodeParams = {
-          "latlng":        suministro[0].latitud+","+suministro[0].longitud,
-          "result_type":   "postal_code",
-          "language":      "es",
-          "location_type": "APPROXIMATE"
-        };
-         
-        gmAPI.reverseGeocode(reverseGeocodeParams, function(err, result){
-          console.log(result);
-          console.log(result.results[0].formatted_address);
-          
-          var params = {
-            center: result.results[0].formatted_address,
-            zoom: 15,
-            size: '500x400',
-            maptype: 'roadmap',
-            markers: [
-              {
-                location: result.results[0].formatted_address,
-                label   : 'A',
-                color   : 'green',
-                shadow  : true
-              },
-              {
-                location: result.results[0].formatted_address,
-                icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=cafe%7C996600'
-              }
-            ],
-            style: [
-              {
-                feature: 'road',
-                element: 'all',
-                rules: {
-                  hue: '0x00ff00'
-                }
-              }
-            ],
-            /*path: [
-              {
-                color: '0x0000ff',
-                weight: '5',
-                points: [
-                  '41.139817,-77.454439',
-                  '41.138621,-77.451596'
-                ]
-              }
-            ]*/
-          };
-          gmAPI.staticMap(params); // return static map URL
-          gmAPI.staticMap(params, function(err, binaryImage) {
-            // fetch asynchronously the binary image
-          });
-          console.log(gmAPI.staticMap(params));
-        });
       }
       recoleccion();
      
