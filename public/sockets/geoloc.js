@@ -5,8 +5,8 @@ var distancia = document.getElementById("distancia");
 var boton = document.getElementById("geoloc");
 boton.addEventListener("click",getLocation);
 
-//var socket = io.connect('//autenticacionluis.herokuapp.com', {'forceNew': true}); // para conectarnos al servidor de sockets, con ello ya creamos la conexión
-var socket = io.connect('localhost:3200', {'forceNew': true});
+var socket = io.connect('//autenticacionluis.herokuapp.com', {'forceNew': true}); // para conectarnos al servidor de sockets, con ello ya creamos la conexión
+//var socket = io.connect('localhost:3200', {'forceNew': true});
 
 socket.on('suministros', function(data){
     render(data); // llamamos a la función render que hemos creado más abajo
